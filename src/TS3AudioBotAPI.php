@@ -97,7 +97,7 @@ class TS3AudioBotAPI
      * @param null $httpClient
      */
     public function __construct(string $url, string $token, $httpClient = null) {
-        $this->url = $url;
+        $this->url = urlencode($url);
         $this->apiToken = $token;
         $this->setHttpClient($httpClient);
         $this->setCredentials($url, $token);

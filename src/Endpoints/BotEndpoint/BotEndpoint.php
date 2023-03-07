@@ -18,7 +18,7 @@ class BotEndpoint
      */
     public function setAvatar(int $bot_id, string $url)
     {
-        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/bot/avatar/set/'.$url);
+        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/bot/avatar/set/'.urlencode($url));
     }
 
     /**

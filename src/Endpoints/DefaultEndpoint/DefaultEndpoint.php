@@ -74,7 +74,7 @@ class DefaultEndpoint
      */
     public function playUrl(int $bot_id,string $url, array $attributes)
     {
-        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/play/'.$url.'/'. json_encode($attributes));
+        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/play/'.urlencode($url).'/'. json_encode($attributes));
     }
 
     /**
@@ -122,7 +122,7 @@ class DefaultEndpoint
      */
     public function addUrl(int $bot_id, string $url)
     {
-        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/add/' . $url);
+        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/add/' .urlencode($url));
     }
 
     /**
@@ -146,7 +146,7 @@ class DefaultEndpoint
      */
     public function from(int $bot_id, string $factory, string $url)
     {
-        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/from/'.$factory.'/'.$url);
+        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/from/'.$factory.'/'.urlencode($url));
     }
 
 

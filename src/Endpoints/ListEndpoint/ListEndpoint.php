@@ -36,7 +36,7 @@ class ListEndpoint
      */
     public function from(int $bot_id, string $resolverName, string $listId, string $url)
     {
-        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/list/from/'.$resolverName.'/'.$listId.'/'.$url);
+        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/list/from/'.$resolverName.'/'.$listId.'/'.urlencode($url));
     }
 
     /**
@@ -44,7 +44,7 @@ class ListEndpoint
      */
     public function import(int $bot_id, string $listId, string $url)
     {
-        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/list/import/'.$listId.'/'.$url);
+        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/list/import/'.$listId.'/'.urlencode($url));
     }
 
     /**
@@ -52,7 +52,7 @@ class ListEndpoint
      */
     public function insert(int $bot_id, string $listId, string $index, string $url)
     {
-        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/list/insert/'.$listId.'/'.$index.'/'.$url);
+        return $this->TS3AudioBotAPI->get('api/bot/use/'.$bot_id.'/(/list/insert/'.$listId.'/'.$index.'/'.urlencode($url));
     }
 
     /**
