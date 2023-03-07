@@ -4,6 +4,7 @@
 namespace TS3AudioBotAPI;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use TS3AudioBotAPI\Endpoints\AliasEndpoint\AliasEndpoint;
 use TS3AudioBotAPI\Endpoints\APIEndpoint\APIEndpoint;
 use TS3AudioBotAPI\Endpoints\BotEndpoint\BotEndpoint;
@@ -111,6 +112,7 @@ class TS3AudioBotAPI
             'timeout' => 120,
             'http_errors' => false,
         ]);
+
     }
 
     public function setCredentials($url, $credentials)
@@ -156,6 +158,7 @@ class TS3AudioBotAPI
      * @return ResponseInterface
      *
      * @throws ParameterException If the given field in params is not an array
+     * @throws GuzzleException
      */
     private function request(string $actionPath, array $params = [], string $method = 'GET'): ResponseInterface
     {
@@ -165,19 +168,9 @@ class TS3AudioBotAPI
             throw new ParameterException();
         }
 
-        $params['Authorization'] = 'Bearer ' . $this->apiToken;
-
         switch ($method) {
             case 'GET':
-                return $this->getHttpClient()->get($url, ['verify' => false, 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->apiToken]]);
-            case 'POST':
-                return $this->getHttpClient()->post($url, ['verify' => false, 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->apiToken], 'form_params' => $params,]);
-            case 'PUT':
-                return $this->getHttpClient()->put($url, ['verify' => false, 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->apiToken], 'form_params' => $params,]);
-            case 'DELETE':
-                return $this->getHttpClient()->delete($url, ['verify' => false, 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->apiToken], 'form_params' => $params,]);
-            case 'PATCH':
-                return $this->getHttpClient()->patch($url, ['verify' => false, 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json', 'Authorization' => 'Bearer ' . $this->apiToken], 'form_params' => $params,]);
+                return $this->getHttpClient()->get($url, ['verify' => false, 'headers' => ['Content-Type' => 'application/json', 'Accept' => 'application/json', 'Authorization' => "Basic " . base64_encode($this->apiToken)]]);
             default:
                 throw new ParameterException('Wrong HTTP method passed');
         }
