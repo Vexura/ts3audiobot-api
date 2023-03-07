@@ -41,7 +41,6 @@ class TS3AudioBotAPI
 
     private $aliasHandler;
 
-    private $url;
     private $whisperHandler;
 
     private $apiHandler;
@@ -97,7 +96,7 @@ class TS3AudioBotAPI
      * @param null $httpClient
      */
     public function __construct(string $url, string $token, $httpClient = null) {
-        $this->url = urlencode($url);
+        $this->url = $url;
         $this->apiToken = $token;
         $this->setHttpClient($httpClient);
         $this->setCredentials($url, $token);

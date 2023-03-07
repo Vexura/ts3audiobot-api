@@ -16,7 +16,7 @@ class Credentials
     public function __construct(string $token, string $url)
     {
         $this->token = $token;
-        $this->url = urlencode($url);
+        $this->url = $url;
     }
 
     public function __toString()
